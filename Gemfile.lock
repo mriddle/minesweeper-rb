@@ -2,12 +2,27 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.7.7)
+    diff-lcs (1.2.5)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+    rspec-core (3.4.2)
+      rspec-support (~> 3.4.0)
+    rspec-expectations (3.4.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-mocks (3.4.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.4.0)
+    rspec-support (3.4.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  colorize (~> 0.7.7)
+  colorize
+  rspec
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
