@@ -2,9 +2,9 @@ class Board
 
   attr_accessor :grid, :cursor
 
-  def initialize(grid)
+  def initialize(grid, cursor)
     @grid = grid
-    @cursor = [0,0]
+    @cursor = cursor
   end
 
   def [](position)
@@ -17,24 +17,15 @@ class Board
 
   def won?
     return false if lost?
-    grid.flatten.all? { |tile| tile.revealed? }
+    grid.flatten.all? { |tile| tile.revealed? && !tile.bombed? }
   end
 
   def lost?
     grid.flatten.any? { |tile| tile.bombed? && tile.revealed? }
   end
 
-  def render
-    system 'clear'
-    grid.each_with_index do |row, row_index|
-      print "#{row_index} "
-      row.each { |tile| update_position(tile) }
-      print "\n"
-    end
-  end
-
-  def populate
-    grid.each_with_index do |row, row_index|
+  def populate(tiles)
+    tiles.each_with_index do |row, row_index|
       row.each_index do |col_index|
         position = [row_index, col_index]
         self[position] = Tile.new(position, self)
@@ -44,17 +35,5 @@ class Board
 
   def add_bombs(tiles)
     tiles.each(&:bombed!)
-  end
-
-  private
-
-  def update_position(tile)
-    if cursor == tile.position && tile.bombed?
-      print "#{tile.display.colorize(background: :white)}" + " ".colorize(background: :white)
-    elsif cursor == tile.position
-      print "#{tile.display.colorize(:white).colorize(:background => :blue)}" + " ".colorize(background: :white)
-    else
-      print "#{tile.display} ".colorize(:background => :white)
-    end
   end
 end

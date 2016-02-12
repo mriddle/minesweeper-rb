@@ -60,7 +60,7 @@ class Tile
     neighbours_pos = []
     MOVE.each do |move|
       possible_neighbor = [move[0] + position[0] , move[1]+position[1]]
-      if possible_neighbor.all? { |cord| cord.between?(0,Game::Properties.boundary) }
+      if possible_neighbor.all? { |cord| cord.between?(0, Game::Properties.boundary) }
         neighbours_pos << possible_neighbor
       end
     end
