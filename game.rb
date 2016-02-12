@@ -17,7 +17,7 @@ class Game
       # Play game
       board.render
       puts "\nUse arrow keys to select a location. \nHit enter/space to reveal"
-      cursor.fetch
+      cursor.prompt
     end
     puts "\n"
     board.lost? ? puts("You lost :(".colorize(:light_red)) : puts("You won :)".colorize(:light_green))

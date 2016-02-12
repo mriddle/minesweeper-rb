@@ -9,50 +9,25 @@ class Cursor
     exit: "\u0003"
   }
 
-  attr_accessor :board
+  attr_accessor :board, :boundary
 
   def initialize(board)
     @board = board
+    @boundary = board.rows - 1
   end
 
-  def fetch
-    input = get_action
+  def prompt
     cursor = board.cursor
-    if input == 'UP ARROW'
-      board.cursor = move_up(cursor)
-      'NO RETURN'
-    elsif input == 'DOWN ARROW'
-      board.cursor = move_down(cursor)
-      'NO RETURN'
-    elsif input == 'RIGHT ARROW'
-      board.cursor = move_right(cursor)
-      'NO RETURN'
-    elsif input == 'LEFT ARROW'
-      board.cursor = move_left(cursor)
-      'NO RETURN'
-    elsif input == 'REVEAL'
+    position = get_position(read_input, cursor)
+    if position
+      board.cursor = position
+    else
       board[cursor].reveal!
-      'REVEAL'
     end
+    cursor = board.cursor
   end
 
   private
-
-  def move_up(cursor)
-    [cursor[0] - 1, cursor[1]] if cursor[0] > 0
-  end
-
-  def move_down(cursor)
-    [cursor[0] + 1, cursor[1]] if cursor[0] < 8
-  end
-
-  def move_right(cursor)
-    [cursor[0], cursor[1] + 1] if cursor[1] < 8
-  end
-
-  def move_left(cursor)
-    [cursor[0], cursor[1] - 1] if cursor[1] > 0
-  end
 
   def read_input
     STDIN.echo = false
@@ -68,21 +43,36 @@ class Cursor
     return input
   end
 
-  def get_action
-    case read_input
+  def get_position(input, cursor)
+    case input
     when INPUT[:return] || INPUT[:space]
-      return "REVEAL"
+      nil
     when INPUT[:arrow_up]
-      return "UP ARROW"
+      move_up(cursor)
     when INPUT[:arrow_down]
-      return "DOWN ARROW"
+      move_down(cursor)
     when INPUT[:arrow_right]
-      return "RIGHT ARROW"
+      move_right(cursor)
     when INPUT[:arrow_left]
-      return "LEFT ARROW"
+      move_left(cursor)
     when INPUT[:exit]
       exit
-      return "CONTROL-C"
     end
+  end
+
+  def move_up(cursor)
+    [cursor[0] - 1, cursor[1]] if cursor[0] > 0
+  end
+
+  def move_down(cursor)
+    [cursor[0] + 1, cursor[1]] if cursor[0] < boundary
+  end
+
+  def move_right(cursor)
+    [cursor[0], cursor[1] + 1] if cursor[1] < boundary
+  end
+
+  def move_left(cursor)
+    [cursor[0], cursor[1] - 1] if cursor[1] > 0
   end
 end

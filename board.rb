@@ -4,6 +4,8 @@ class Board
 
   def initialize(rows: 8, cols: 8, bombs: 10)
     @bombs = bombs
+    @rows = rows
+    @cols = cols
     @grid = Array.new(rows) { Array.new(cols) }
     @cursor = [0,0]
   end
