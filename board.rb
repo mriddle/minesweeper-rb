@@ -1,11 +1,12 @@
 class Board
 
-  attr_accessor :grid, :cursor, :bombs, :rows, :cols
+  attr_accessor :grid, :cursor, :bombs, :rows, :cols, :boundary
 
   def initialize(rows: 8, cols: 8, bombs: 10)
     @bombs = bombs
     @rows = rows
     @cols = cols
+    @boundary = rows - 1
     @grid = Array.new(rows) { Array.new(cols) }
     @cursor = [0,0]
   end

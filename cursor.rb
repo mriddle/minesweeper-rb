@@ -9,11 +9,10 @@ class Cursor
     exit: "\u0003"
   }
 
-  attr_accessor :board, :boundary
+  attr_accessor :board
 
   def initialize(board)
     @board = board
-    @boundary = board.rows - 1
   end
 
   def prompt
@@ -65,11 +64,11 @@ class Cursor
   end
 
   def move_down(cursor)
-    [cursor[0] + 1, cursor[1]] if cursor[0] < boundary
+    [cursor[0] + 1, cursor[1]] if cursor[0] < board.boundary
   end
 
   def move_right(cursor)
-    [cursor[0], cursor[1] + 1] if cursor[1] < boundary
+    [cursor[0], cursor[1] + 1] if cursor[1] < board.boundary
   end
 
   def move_left(cursor)
