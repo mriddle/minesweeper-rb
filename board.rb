@@ -54,7 +54,6 @@ class Board
     self
   end
 
-
   def add_bombs
     grid.flatten.sample(@bombs).each(&:bombed!)
   end
