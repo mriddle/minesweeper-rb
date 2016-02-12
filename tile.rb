@@ -7,11 +7,11 @@ class Tile
   end
 
   def bombed!
-    status = :bombed
+    @state = :bombed
   end
 
   def reveal!
-    status = :revealed
+    @state = :revealed
   end
 
   def bombed?
