@@ -32,13 +32,7 @@ class Board
     system 'clear'
     grid.each_with_index do |row, row_index|
       print "#{row_index} "
-      row.each do |tile|
-        if cursor == tile.position
-          print "#{tile.display.colorize(:white).colorize(:background => :blue)}" + " ".colorize(background: :white)
-        else
-          print "#{tile.display} ".colorize(:background => :white)
-        end
-      end
+      row.each { |tile| update_position(tile) }
       print "\n"
     end
   end
@@ -56,5 +50,17 @@ class Board
 
   def add_bombs
     grid.flatten.sample(@bombs).each(&:bombed!)
+  end
+
+  private
+
+  def update_position(tile)
+    if cursor == tile.position && tile.bombed?
+      print "#{tile.display.colorize(background: :white)}" + " ".colorize(background: :white)
+    elsif cursor == tile.position
+      print "#{tile.display.colorize(:white).colorize(:background => :blue)}" + " ".colorize(background: :white)
+    else
+      print "#{tile.display} ".colorize(:background => :white)
+    end
   end
 end
