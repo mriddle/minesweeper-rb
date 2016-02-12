@@ -1,34 +1,33 @@
 class Tile
-
-  attr_accessor :state, :position
+  attr_accessor :position
 
   def initialize(position)
     @position = position
   end
 
   def bombed!
-    @state = :bombed
+    @bombed = true
   end
 
   def reveal!
-    @state = :revealed
+    @revealed = true
   end
 
   def bombed?
-    state == :bombed
+    @bombed
   end
 
   def revealed?
-    state == :revealed
+    @revealed
   end
 
   def display
-    case state
-    when :revealed
+    if revealed? && bombed?
+      "💣".colorize(:red)
+    elsif revealed?
       "_".colorize(:black)
     else
       "*".colorize(:black)
     end
   end
-
 end

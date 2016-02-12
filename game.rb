@@ -20,6 +20,7 @@ class Game
       cursor.prompt
     end
     puts "\n"
+    board.render
     board.lost? ? puts("You lost :(".colorize(:light_red)) : puts("You won :)".colorize(:light_green))
   end
 
