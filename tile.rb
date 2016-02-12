@@ -1,8 +1,11 @@
 class Tile
-  attr_accessor :position
+  MOVE = [[0,1],[1,0],[-1,0],[0,-1],[1,1],[-1,-1],[-1,1],[1,-1]]
 
-  def initialize(position)
+  attr_accessor :position, :board
+
+  def initialize(position, board)
     @position = position
+    @board = board
   end
 
   def bombed!
@@ -10,7 +13,11 @@ class Tile
   end
 
   def reveal!
+    return if revealed?
     @revealed = true
+    return if bombed?
+    return if neighbor_bomb_count > 0
+    neighbours.each(&:reveal!)
   end
 
   def bombed?
@@ -29,5 +36,22 @@ class Tile
     else
       "*".colorize(:black)
     end
+  end
+
+  private
+
+  def neighbours
+    neighbours_pos = []
+    MOVE.each do |move|
+      possible_neighbor = [move[0] + position[0] , move[1]+position[1]]
+      if possible_neighbor.all? { |cord| cord.between?(0,board.boundary) }
+        neighbours_pos << possible_neighbor
+      end
+    end
+    neighbours_pos.map {|pos| board[pos] }
+  end
+
+  def neighbor_bomb_count
+    neighbours.count(&:bombed?)
   end
 end

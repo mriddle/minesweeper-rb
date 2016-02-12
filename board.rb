@@ -47,7 +47,7 @@ class Board
     grid.each_with_index do |row, row_index|
       row.each_index do |col_index|
         position = [row_index, col_index]
-        self[position] = Tile.new(position)
+        self[position] = Tile.new(position, self)
       end
     end
     add_bombs
