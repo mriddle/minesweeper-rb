@@ -1,13 +1,9 @@
 class Board
 
-  attr_accessor :grid, :cursor, :bombs, :rows, :cols, :boundary
+  attr_accessor :grid, :cursor
 
-  def initialize(rows: 8, cols: 8, bombs: 10)
-    @bombs = bombs
-    @rows = rows
-    @cols = cols
-    @boundary = rows - 1
-    @grid = Array.new(rows) { Array.new(cols) }
+  def initialize(grid)
+    @grid = grid
     @cursor = [0,0]
   end
 
@@ -44,12 +40,10 @@ class Board
         self[position] = Tile.new(position, self)
       end
     end
-    add_bombs
-    self
   end
 
-  def add_bombs
-    grid.flatten.sample(@bombs).each(&:bombed!)
+  def add_bombs(tiles)
+    tiles.each(&:bombed!)
   end
 
   private

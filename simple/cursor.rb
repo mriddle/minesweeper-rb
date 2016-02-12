@@ -64,11 +64,11 @@ class Cursor
   end
 
   def move_down(cursor)
-    [cursor[0] + 1, cursor[1]] if cursor[0] < board.boundary
+    [cursor[0] + 1, cursor[1]] if cursor[0] < Game::Properties.boundary
   end
 
   def move_right(cursor)
-    [cursor[0], cursor[1] + 1] if cursor[1] < board.boundary
+    [cursor[0], cursor[1] + 1] if cursor[1] < Game::Properties.boundary
   end
 
   def move_left(cursor)

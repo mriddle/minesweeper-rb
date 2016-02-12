@@ -1,8 +1,30 @@
 
 class Game
-  def self.start
+  class Properties
+    def self.bomb_count
+      10
+    end
 
-    new(Board.new.populate).play
+    def self.rows
+      8
+    end
+
+    def self.columns
+      8
+    end
+
+    def self.boundary
+      rows - 1
+    end
+  end
+
+  def self.start
+    tiles = Array.new(Properties.rows) { Array.new(Properties.columns) }
+    board = Board.new(tiles)
+    board.populate
+    tiles_for_bombs = tiles.flatten.sample(Properties.bomb_count)
+    board.add_bombs(tiles_for_bombs)
+    new(board).play
   end
 
   attr_accessor :board, :cursor
