@@ -32,9 +32,9 @@ class Game
     cursor = Cursor.new(board)
     board.populate(tiles)
     tiles_for_bombs = tiles.flatten.sample(Properties.bomb_count)
-    board.add_bombs(tiles_for_bombs)
+    tiles = board.add_bombs(tiles_for_bombs)
 
-    until board.won? || board.lost?
+    until won?(tiles.flatten) || lost?(tiles.flatten)
       # Play game
       render(board.cursor, board.grid)
       puts "\nUse arrow keys to select a location. \nHit enter/space to reveal"
@@ -42,7 +42,7 @@ class Game
     end
     puts "\n"
     render(board.cursor, board.grid)
-    board.lost? ? puts("You lost :(".colorize(:light_red)) : puts("You won :)".colorize(:light_green))
+    lost?(tiles) ? puts("You lost :(".colorize(:light_red)) : puts("You won :)".colorize(:light_green))
   end
 
   def render(cursor, tiles)
@@ -62,5 +62,14 @@ class Game
     else
       print "#{tile.display} ".colorize(:background => :white)
     end
+  end
+
+  def won?(tiles)
+    return false if lost?(tiles)
+    tiles.all? { |tile| tile.revealed? && !tile.bombed? }
+  end
+
+  def lost?(tiles)
+    tiles.any? { |tile| tile.bombed? && tile.revealed? }
   end
 end
