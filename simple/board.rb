@@ -34,6 +34,6 @@ class Board
   end
 
   def add_bombs(tiles)
-    tiles.each(&:bombed!)
+    tiles.map(&:bombed!)
   end
 end

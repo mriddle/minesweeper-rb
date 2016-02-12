@@ -23,7 +23,7 @@ class Game
   end
 
   def self.start
-    new().play
+    new.play
   end
 
   def play
