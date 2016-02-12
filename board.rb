@@ -24,7 +24,7 @@ class Board
   end
 
   def lost?
-    grid.flatten.any? { |tile| tile.bombed? }
+    grid.flatten.any? { |tile| tile.bombed? && tile.revealed? }
   end
 
   def render
