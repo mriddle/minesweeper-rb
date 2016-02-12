@@ -1,1 +1,5 @@
 language: ruby
+env:
+  - TEST_DIR=simple
+  - TEST_DIR=multiplayer
+script: "cd $TEST_DIR && bundle exec rspec"
