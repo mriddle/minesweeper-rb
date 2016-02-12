@@ -1,24 +1,7 @@
-![example](https://raw.github.com/mriddle/minesweeper-rb/master/simple/assets/screenshot.png)
+[![Build Status](https://travis-ci.org/mriddle/minesweeper-rb.svg?branch=master)](https://travis-ci.org/mriddle/minesweeper-rb)
 
 # minesweeper-rb
 
-Game
-  - State - playing, won, lost
-  - Level: Easy (8x8), 10 bombs
+Minesweeper on the command line. Playground for different technologies and patterns
 
-Board
-  - Collection of tiles
-  - neighbours for tile
-
-Tile
- - revealed
- - bombed
- - position
-
-
-
-User starts game
-Tiles generated (64) with 10 of them being bombs
-User uses keyboard arrows to navigate and select cells
-
-
+![example](https://raw.github.com/mriddle/minesweeper-rb/master/simple/assets/screenshot.png)
