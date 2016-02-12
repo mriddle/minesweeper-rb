@@ -1,3 +1,5 @@
+![example](https://raw.github.com/mriddle/minesweeper-rb/master/simple/assets/screenshot.png)
+
 # minesweeper-rb
 
 Game
