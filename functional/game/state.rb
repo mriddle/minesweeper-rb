@@ -3,7 +3,14 @@ module Game
     def play(tiles, cursor_position)
       system 'clear'
       render(tiles, cursor_position)
-      play(tiles, Game::Input.get_action(cursor_position)) unless finished?(tiles)
+      input = Game::Input.get_action(cursor_position)
+      if input[:action] == :reveal
+        play(
+          Game::Board.reveal(tiles: tiles, position: input[:position]),
+          input[:position]
+        )
+      end
+      play(tiles, input[:position]) unless finished?(tiles)
     end
 
     def render(tiles, cursor_position)

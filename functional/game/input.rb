@@ -2,16 +2,22 @@ module Game
   class Input
     def self.get_action(current_position)
       case read_input
+      when ACTIONS[:enter]
+        { action: :reveal, position: current_position }
+      when ACTIONS[:space]
+        { action: :reveal, position: current_position }
       when ACTIONS[:arrow_up]
-        move_up(current_position)
+        { action: :arrow_up, position: move_up(current_position) }
       when ACTIONS[:arrow_down]
-        move_down(current_position)
+        { action: :arrow_down, position: move_down(current_position) }
       when ACTIONS[:arrow_right]
-        move_right(current_position)
+        { action: :arrow_right, position: move_right(current_position) }
       when ACTIONS[:arrow_left]
-        move_left(current_position)
+        { action: :arrow_left, position: move_left(current_position) }
       when ACTIONS[:exit]
         exit
+      else
+        abort 'Unsupported action'
       end
     end
 
