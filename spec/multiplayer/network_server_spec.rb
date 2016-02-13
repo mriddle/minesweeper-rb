@@ -38,4 +38,20 @@ RSpec.describe NetworkServer do
       expect(server.ip_address).to eq "10.1.2.3"
     end
   end
+
+  describe "#port" do
+    context "default" do
+      it "returns 9898" do
+        server = NetworkServer.new
+        expect(server.port).to eq 9898
+      end
+    end
+
+    context "specified" do
+      it "returns the specified port" do
+        server = NetworkServer.new(port: 123)
+        expect(server.port).to eq 123
+      end
+    end
+  end
 end

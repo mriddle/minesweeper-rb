@@ -1,6 +1,8 @@
 require 'socket'
 
 class NetworkServer
+  attr_reader :port
+
   def initialize(port: 9898)
     @port = port
   end
