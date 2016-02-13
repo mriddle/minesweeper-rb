@@ -17,7 +17,7 @@ module Game
     end
 
   def display
-    if revealed? && bombed?
+    if bombed?
       "💣".colorize(:red)
     elsif revealed?
       "_".colorize(:black)

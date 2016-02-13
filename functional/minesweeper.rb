@@ -11,8 +11,9 @@ require_relative 'game/board'
 require_relative 'game/input'
 require_relative 'game/state'
 
-game_tiles = Game::Board.new.create_tiles(rows: Game::Properties.rows, columns: Game::Properties.columns)
-
+board = Game::Board.new
+tiles = board.create_tiles(rows: Game::Properties.rows, columns: Game::Properties.columns)
+tiles_with_bombs = board.add_bombs(tiles: tiles, bomb_count: Game::Properties.bomb_count)
 game = Game::State.new
-game.play(game_tiles, [0,0])
+game.play(tiles_with_bombs, [0,0])
 
