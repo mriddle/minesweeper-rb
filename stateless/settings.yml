@@ -1,0 +1,5 @@
+level:
+  easy:
+    bomb_count: 10
+    rows: 8
+    columns: 8
