@@ -29,7 +29,6 @@ class Game
   def play
     tiles = Array.new(Properties.rows) { Array.new(Properties.columns) }
     board = Board.new(tiles, Properties.starting_cursor_position)
-    cursor = Cursor.new(board)
     board.populate(tiles)
     tiles_for_bombs = tiles.flatten.sample(Properties.bomb_count)
     tiles = board.add_bombs(tiles_for_bombs)
@@ -38,7 +37,7 @@ class Game
       # Play game
       render(board.cursor, board.grid)
       puts "\nUse arrow keys to select a location. \nHit enter/space to reveal"
-      cursor.prompt
+      prompt(board)
     end
     puts "\n"
     render(board.cursor, board.grid)
@@ -71,5 +70,39 @@ class Game
 
   def lost?(tiles)
     tiles.any? { |tile| tile.bombed? && tile.revealed? }
+  end
+
+  def prompt(board)
+    cursor = board.cursor
+    case Input.get_action
+    when :reveal
+      board[cursor].reveal!
+    when :move_up
+      board.cursor = move_up(cursor)
+    when :move_down
+      board.cursor = move_down(cursor)
+    when :move_right
+      board.cursor = move_right(cursor)
+    when :move_left
+      board.cursor = move_left(cursor)
+    when :exit
+      exit
+    end
+  end
+
+  def move_up(cursor)
+    [cursor[0] - 1, cursor[1]] if cursor[0] > 0
+  end
+
+  def move_down(cursor)
+    [cursor[0] + 1, cursor[1]] if cursor[0] < Game::Properties.boundary
+  end
+
+  def move_right(cursor)
+    [cursor[0], cursor[1] + 1] if cursor[1] < Game::Properties.boundary
+  end
+
+  def move_left(cursor)
+    [cursor[0], cursor[1] - 1] if cursor[1] > 0
   end
 end

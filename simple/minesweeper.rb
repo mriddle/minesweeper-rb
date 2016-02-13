@@ -3,7 +3,7 @@
 require 'io/console'
 require 'colorize'
 
-require_relative 'cursor'
+require_relative 'input'
 require_relative 'tile'
 require_relative 'board'
 require_relative 'game'
