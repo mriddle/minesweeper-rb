@@ -1,27 +1,29 @@
+require_relative 'input_manager'
 
 class Game
   def self.start
-
-    new(Board.new.populate).play
+    self.new.loop
   end
 
-  attr_accessor :board, :cursor
+  def loop
+    count = 0
 
-  def initialize(board)
-    @board = board
-    @cursor = Cursor.new(board)
-  end
-
-  def play
-    until board.won? || board.lost?
-      # Play game
-      board.render
-      puts "\nUse arrow keys to select a location. \nHit enter/space to reveal"
-      cursor.prompt
+    while @running do
+      process(@input_manager.commands)
     end
-    puts "\n"
-    board.render
-    board.lost? ? puts("You lost :(".colorize(:light_red)) : puts("You won :)".colorize(:light_green))
   end
 
+  private
+
+  def initialize
+    @running = true
+    @input_manager = InputManager.new
+  end
+
+  def process(input_commands)
+    if input_commands.any?
+      system('clear')
+      puts(input_commands)
+    end
+  end
 end
