@@ -14,18 +14,15 @@ module Game
     end
 
     def render(tiles, cursor_position)
-      tiles.each_with_index do |row, row_index|
-        print "#{row_index} "
-        row.each do |tile|
-          if cursor_position == tile.position && tile.bombed? && tile.revealed?
-            print "#{tile.display.colorize(background: :white)}" + " ".colorize(background: :white)
-          elsif cursor_position == tile.position
-            print "#{tile.display.colorize(:white).colorize(:background => :blue)}" + " ".colorize(background: :white)
-          else
-            print "#{tile.display} ".colorize(:background => :white)
-          end
+      afterEachRow = Proc.new { |n| print "\n" }
+      tiles.each(afterEachRow) do |tile|
+        if cursor_position == tile.position && tile.bombed? && tile.revealed?
+          print "#{tile.display.colorize(background: :white)}" + " ".colorize(background: :white)
+        elsif cursor_position == tile.position
+          print "#{tile.display.colorize(:white).colorize(:background => :blue)}" + " ".colorize(background: :white)
+        else
+          print "#{tile.display} ".colorize(:background => :white)
         end
-        print "\n"
       end
     end
 
