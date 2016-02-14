@@ -8,8 +8,6 @@ class Game
   end
 
   def loop
-    count = 0
-
     while @running do
       process(@input_manager.commands)
 
