@@ -29,7 +29,7 @@ class Game
 
   def process(input_commands)
     if input_commands.any?
-      puts(input_commands)
+      print(input_commands)
     end
   end
 end
