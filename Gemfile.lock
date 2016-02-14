@@ -4,6 +4,11 @@ GEM
     colorize (0.7.7)
     curses (1.0.1)
     diff-lcs (1.2.5)
+    equatable (0.5.0)
+    necromancer (0.3.0)
+    pastel (0.6.0)
+      equatable (~> 0.5.0)
+      tty-color (~> 0.3.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -17,6 +22,48 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    tty (0.4.0)
+      equatable (~> 0.5.0)
+      pastel (~> 0.6.0)
+      tty-color (~> 0.3.0)
+      tty-cursor (~> 0.2.0)
+      tty-pager (~> 0.4.0)
+      tty-platform (~> 0.1.0)
+      tty-progressbar (~> 0.8.0)
+      tty-prompt (~> 0.4.0)
+      tty-screen (~> 0.5.0)
+      tty-spinner (~> 0.1.0)
+      tty-table (~> 0.5.0)
+      tty-which (~> 0.1.0)
+    tty-color (0.3.0)
+    tty-cursor (0.2.0)
+    tty-pager (0.4.0)
+      tty-screen (~> 0.5.0)
+      tty-which (~> 0.1.0)
+      verse (~> 0.4.0)
+    tty-platform (0.1.0)
+    tty-progressbar (0.8.0)
+      tty-screen (~> 0.5.0)
+    tty-prompt (0.4.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.6.0)
+      tty-cursor (~> 0.2.0)
+      tty-platform (~> 0.1.0)
+      wisper (~> 1.6.1)
+    tty-screen (0.5.0)
+    tty-spinner (0.1.0)
+    tty-table (0.5.0)
+      equatable (~> 0.5.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.6.0)
+      tty-screen (~> 0.5.0)
+      unicode_utils (~> 1.4.0)
+      verse (~> 0.4.0)
+    tty-which (0.1.0)
+    unicode_utils (1.4.0)
+    verse (0.4.0)
+      unicode_utils (~> 1.4.0)
+    wisper (1.6.1)
 
 PLATFORMS
   ruby
@@ -25,6 +72,7 @@ DEPENDENCIES
   colorize
   curses
   rspec
+  tty
 
 BUNDLED WITH
    1.11.2
