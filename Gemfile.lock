@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.7.7)
+    curses (1.0.1)
     diff-lcs (1.2.5)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -22,6 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize
+  curses
   rspec
 
 BUNDLED WITH
