@@ -2,10 +2,14 @@ require 'curses'
 
 class InputManager
   KEY_MAP = {
+    10 => :confirm, # enter
+    27 => :cancel, # esc
     65 => :up,
     66 => :down,
     67 => :right,
     68 => :left,
+    120 => :cancel, # x
+    122 => :confirm, # z
   }.freeze
 
   def initialize
