@@ -12,7 +12,10 @@ class Game
 
     while @running do
       process(@input_manager.commands)
-      @terminal_renderer.render(TitleScreen::SPLASH_TITLE)
+
+      @screen.last.dirty_components.each do |component|
+        @terminal_renderer.render(component)
+      end
     end
   end
 
@@ -22,6 +25,8 @@ class Game
     @running = true
     @input_manager = InputManager.new
     @terminal_renderer = TerminalRenderer.new
+    @screen = []
+    @screen << TitleScreen.new
   end
 
   def process(input_commands)

@@ -9,11 +9,14 @@ class TerminalRenderer
     Curses.start_color
   end
 
-  def render(lines, opts = {})
+  def render(component)
     cursor = TTY::Cursor
 
-    lines.each_with_index { |line, index|
-      print cursor.move_to(0, index)
+    x = component.x
+    y = component.y
+
+    component.lines.each_with_index { |line, index|
+      print cursor.move_to(x, y + index)
       print line
     }
   end
