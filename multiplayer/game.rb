@@ -9,7 +9,7 @@ class Game
 
   def loop
     while @running do
-      process(@input_manager.commands)
+      @screen.last.process(@input_manager.commands)
 
       @screen.last.dirty_components.each do |component|
         @terminal_renderer.render(component)

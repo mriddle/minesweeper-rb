@@ -7,6 +7,8 @@ class TerminalRenderer
     Curses.nonl
     Curses.init_screen
     Curses.start_color
+    Curses.clear
+    Curses.curs_set(0)
   end
 
   def render(component)
